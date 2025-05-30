@@ -1,0 +1,3 @@
+- (Animated) Sprites
+- Try to create my own music/sfx?
+- Particle effects for when things explode?
