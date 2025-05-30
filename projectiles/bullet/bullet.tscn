@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://df7c088051sug"]
+
+[ext_resource type="PackedScene" uid="uid://bqwxjcejmaplw" path="res://projectiles/projectile/projectile.tscn" id="1_1mdu2"]
+[ext_resource type="Texture2D" uid="uid://bulffyro2en1q" path="res://assets/sprites/alien/bullet/bullet.png" id="2_g1w5t"]
+
+[node name="Bullet" type="Node2D"]
+
+[node name="Projectile" parent="." instance=ExtResource("1_1mdu2")]
+collision_layer = 32
+collision_mask = 22
+gravity_scale = 1.0
+texture = ExtResource("2_g1w5t")
+my_scale = Vector2(2, 2)

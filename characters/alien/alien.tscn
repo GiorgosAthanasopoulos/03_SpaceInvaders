@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://q8pb042rabun"]
+
+[ext_resource type="Texture2D" uid="uid://cbp8lvb55dtj0" path="res://assets/sprites/alien/alien.png" id="1_4k2u6"]
+[ext_resource type="Script" uid="uid://bqpcodyktfhv3" path="res://characters/alien/scripts/alien.gd" id="1_y7edr"]
+[ext_resource type="PackedScene" uid="uid://ck22ued57dqfq" path="res://particles/explosion/explosion_particles.tscn" id="2_1pmj1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7edr"]
+size = Vector2(16, 16)
+
+[node name="Alien" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_y7edr")
+explosion_particles = ExtResource("2_1pmj1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y7edr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_4k2u6")

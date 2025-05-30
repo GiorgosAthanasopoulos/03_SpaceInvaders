@@ -1,6 +1,165 @@
-[gd_scene load_steps=2 format=3 uid="uid://brak20jxcglrn"]
+[gd_scene load_steps=7 format=3 uid="uid://brak20jxcglrn"]
 
 [ext_resource type="Script" uid="uid://ccycgwlbc6hkp" path="res://scenes/game/scripts/game.gd" id="1_sul5r"]
+[ext_resource type="PackedScene" uid="uid://cpcmvv05xmga3" path="res://characters/player/player.tscn" id="2_7h61r"]
+[ext_resource type="PackedScene" uid="uid://q8pb042rabun" path="res://characters/alien/alien.tscn" id="3_0sr1o"]
+[ext_resource type="PackedScene" uid="uid://c5ggqae6ps1fq" path="res://objects/wall/vertical_wall.tscn" id="4_bdhmt"]
+[ext_resource type="PackedScene" uid="uid://cu3api7ltbqoi" path="res://objects/bunker/bunker.tscn" id="4_kelw5"]
+
+[sub_resource type="Environment" id="Environment_lfrn8"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_sul5r")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Bunkers" type="Node2D" parent="Environment"]
+
+[node name="Row1" type="Node2D" parent="Environment/Bunkers"]
+
+[node name="Bunker" parent="Environment/Bunkers/Row1" instance=ExtResource("4_kelw5")]
+position = Vector2(115, 570)
+
+[node name="Bunker2" parent="Environment/Bunkers/Row1" instance=ExtResource("4_kelw5")]
+position = Vector2(460, 570)
+
+[node name="Bunker3" parent="Environment/Bunkers/Row1" instance=ExtResource("4_kelw5")]
+position = Vector2(805, 570)
+
+[node name="Bunker4" parent="Environment/Bunkers/Row1" instance=ExtResource("4_kelw5")]
+position = Vector2(1150, 570)
+
+[node name="Walls" type="Node2D" parent="Environment"]
+
+[node name="VerticalWall1" parent="Environment/Walls" instance=ExtResource("4_bdhmt")]
+position = Vector2(0, 360)
+
+[node name="VerticalWall2" parent="Environment/Walls" instance=ExtResource("4_bdhmt")]
+position = Vector2(1280, 360)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_lfrn8")
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("2_7h61r")]
+position = Vector2(640, 670)
+
+[node name="Aliens" type="Node2D" parent="Entities"]
+
+[node name="Row1" type="Node2D" parent="Entities/Aliens"]
+
+[node name="Alien1" parent="Entities/Aliens/Row1" instance=ExtResource("3_0sr1o")]
+position = Vector2(115, 75)
+
+[node name="Alien2" parent="Entities/Aliens/Row1" instance=ExtResource("3_0sr1o")]
+position = Vector2(265, 75)
+
+[node name="Alien3" parent="Entities/Aliens/Row1" instance=ExtResource("3_0sr1o")]
+position = Vector2(415, 75)
+
+[node name="Alien4" parent="Entities/Aliens/Row1" instance=ExtResource("3_0sr1o")]
+position = Vector2(565, 75)
+
+[node name="Alien5" parent="Entities/Aliens/Row1" instance=ExtResource("3_0sr1o")]
+position = Vector2(715, 75)
+
+[node name="Alien6" parent="Entities/Aliens/Row1" instance=ExtResource("3_0sr1o")]
+position = Vector2(865, 75)
+
+[node name="Alien7" parent="Entities/Aliens/Row1" instance=ExtResource("3_0sr1o")]
+position = Vector2(1015, 75)
+
+[node name="Alien8" parent="Entities/Aliens/Row1" instance=ExtResource("3_0sr1o")]
+position = Vector2(1165, 75)
+
+[node name="Row2" type="Node2D" parent="Entities/Aliens"]
+
+[node name="Alien1" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
+position = Vector2(115, 195)
+
+[node name="Alien2" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
+position = Vector2(265, 195)
+
+[node name="Alien3" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
+position = Vector2(415, 195)
+
+[node name="Alien4" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
+position = Vector2(565, 195)
+
+[node name="Alien5" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
+position = Vector2(715, 195)
+
+[node name="Alien6" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
+position = Vector2(865, 195)
+
+[node name="Alien7" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
+position = Vector2(1015, 195)
+
+[node name="Alien8" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
+position = Vector2(1165, 195)
+
+[node name="Row3" type="Node2D" parent="Entities/Aliens"]
+
+[node name="Alien1" parent="Entities/Aliens/Row3" instance=ExtResource("3_0sr1o")]
+position = Vector2(115, 315)
+
+[node name="Alien2" parent="Entities/Aliens/Row3" instance=ExtResource("3_0sr1o")]
+position = Vector2(265, 315)
+
+[node name="Alien3" parent="Entities/Aliens/Row3" instance=ExtResource("3_0sr1o")]
+position = Vector2(415, 315)
+
+[node name="Alien4" parent="Entities/Aliens/Row3" instance=ExtResource("3_0sr1o")]
+position = Vector2(565, 315)
+
+[node name="Alien5" parent="Entities/Aliens/Row3" instance=ExtResource("3_0sr1o")]
+position = Vector2(715, 315)
+
+[node name="Alien6" parent="Entities/Aliens/Row3" instance=ExtResource("3_0sr1o")]
+position = Vector2(865, 315)
+
+[node name="Alien7" parent="Entities/Aliens/Row3" instance=ExtResource("3_0sr1o")]
+position = Vector2(1015, 315)
+
+[node name="Alien8" parent="Entities/Aliens/Row3" instance=ExtResource("3_0sr1o")]
+position = Vector2(1165, 315)
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="UI/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LivesLabel" type="Label" parent="UI/CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 57.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Lives: 3"
+
+[node name="ScoreLabel" type="Label" parent="UI/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Score: 0"

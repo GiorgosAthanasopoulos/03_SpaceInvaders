@@ -11,8 +11,63 @@ config_version=5
 [application]
 
 config/name="03_SpaceInvaders"
+config/description="Classic Space Invaders clone."
+config/version="1.0.0"
+run/main_scene="uid://brak20jxcglrn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://assets/icons/icon.svg"
+config/icon="uid://dqc0j2hwiwaf2"
+
+[audio]
+
+buses/default_bus_layout="res://audio/buses/default_bus_layout.tres"
+
+[autoload]
+
+Events="*res://scenes/game/scripts/events.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
+gdscript/warnings/unsafe_cast=1
+gdscript/warnings/unsafe_call_argument=1
+gdscript/warnings/return_value_discarded=1
+shader_language/warnings/treat_warnings_as_errors=true
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+
+[input]
+
+move_left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+]
+}
+move_right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+]
+}
+shoot={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="wall"
+2d_physics/layer_2="bunker"
+2d_physics/layer_3="player"
+2d_physics/layer_4="alien"
+2d_physics/layer_5="friendly_bullets"
+2d_physics/layer_6="enemy_bullets"
 
 [rendering]
 

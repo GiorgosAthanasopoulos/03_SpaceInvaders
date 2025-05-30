@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://ck22ued57dqfq"]
+
+[ext_resource type="Texture2D" uid="uid://bulffyro2en1q" path="res://assets/sprites/alien/bullet/bullet.png" id="1_tscp3"]
+[ext_resource type="Script" uid="uid://dg6y0c2wkmi1u" path="res://particles/explosion/scripts/explosion_particles.gd" id="2_hoado"]
+
+[sub_resource type="Gradient" id="Gradient_tscp3"]
+offsets = PackedFloat32Array(0.578431, 1)
+colors = PackedColorArray(1, 1, 0.996078, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hoado"]
+gradient = SubResource("Gradient_tscp3")
+
+[sub_resource type="Curve" id="Curve_tscp3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.995413, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hoado"]
+curve = SubResource("Curve_tscp3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tscp3"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 250.0
+initial_velocity_max = 750.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_hoado")
+color_ramp = SubResource("GradientTexture1D_hoado")
+
+[node name="ExplosionParticles" type="GPUParticles2D"]
+self_modulate = Color(1.75, 1, 1, 1)
+emitting = false
+amount = 50
+texture = ExtResource("1_tscp3")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_tscp3")
+script = ExtResource("2_hoado")
