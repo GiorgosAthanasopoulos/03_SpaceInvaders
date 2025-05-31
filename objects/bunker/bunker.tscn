@@ -1,10 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu3api7ltbqoi"]
+[gd_scene load_steps=10 format=3 uid="uid://cu3api7ltbqoi"]
 
 [ext_resource type="Script" uid="uid://cjgonohp85c6y" path="res://objects/bunker/scripts/bunker.gd" id="1_xwnhk"]
 [ext_resource type="Texture2D" uid="uid://o1p61b7t7yjl" path="res://assets/sprites/bunker/bunker.png" id="2_mcmx2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_egrxv"]
-size = Vector2(16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcmx2"]
+atlas = ExtResource("2_mcmx2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g18p"]
+atlas = ExtResource("2_mcmx2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwsxo"]
+atlas = ExtResource("2_mcmx2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tp5uw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcmx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g18p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwsxo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcmx2"]
+size = Vector2(121, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1g18p"]
+size = Vector2(106, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwsxo"]
+size = Vector2(60, 23)
 
 [node name="Bunker" type="RigidBody2D"]
 collision_layer = 2
@@ -12,11 +47,23 @@ collision_mask = 32
 gravity_scale = 0.0
 script = ExtResource("1_xwnhk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(7.5, 7.5)
-shape = SubResource("RectangleShape2D_egrxv")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(7.5, 7.5)
-texture = ExtResource("2_mcmx2")
+sprite_frames = SubResource("SpriteFrames_tp5uw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -15.5)
+shape = SubResource("RectangleShape2D_mcmx2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_1g18p")
+disabled = true
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_fwsxo")
+disabled = true

@@ -1,10 +1,19 @@
 extends RigidBody2D
 
 
-# TODO: upon being hit change texture to partially/fully destroyed and maybe play sound/particle fx
-
-
 @export var lives: int = 3
+
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var collision_shape2: CollisionShape2D = $CollisionShape2D2
+@onready var collision_shape1: CollisionShape2D = $CollisionShape2D1
+
+
+func _ready() -> void:
+    collision_shape.disabled = false
+    collision_shape2.disabled = true
+    collision_shape1.disabled = true
 
 
 func _physics_process(_delta: float) -> void:
@@ -28,8 +37,16 @@ func handle_collisions(collision: KinematicCollision2D) -> void:
         return
 
     lives -= 1
-    # TODO: change texture
+    animated_sprite.frame += 1
+    if animated_sprite.frame == 1:
+        collision_shape.disabled = true
+        collision_shape2.disabled = false
+        collision_shape1.disabled = true
+    elif animated_sprite.frame == 2:
+        collision_shape.disabled = true
+        collision_shape2.disabled = true
+        collision_shape1.disabled = false
+
     if lives <= 0:
+        Particles.spawn_explosives(global_position, global_rotation)
         queue_free()
-        # TODO: sfx?
-        # TODO: particles?

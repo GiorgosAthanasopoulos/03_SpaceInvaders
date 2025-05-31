@@ -23,7 +23,8 @@ buses/default_bus_layout="res://audio/buses/default_bus_layout.tres"
 
 [autoload]
 
-Events="*res://scenes/game/scripts/events.gd"
+Events="*res://globals/scripts/events.gd"
+Particles="*res://globals/scripts/particles.gd"
 
 [debug]
 

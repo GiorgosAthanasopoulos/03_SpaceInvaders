@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://brak20jxcglrn"]
+[gd_scene load_steps=9 format=3 uid="uid://brak20jxcglrn"]
 
 [ext_resource type="Script" uid="uid://ccycgwlbc6hkp" path="res://scenes/game/scripts/game.gd" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://cpcmvv05xmga3" path="res://characters/player/player.tscn" id="2_7h61r"]
 [ext_resource type="PackedScene" uid="uid://q8pb042rabun" path="res://characters/alien/alien.tscn" id="3_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://c5ggqae6ps1fq" path="res://objects/wall/vertical_wall.tscn" id="4_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://cu3api7ltbqoi" path="res://objects/bunker/bunker.tscn" id="4_kelw5"]
+[ext_resource type="PackedScene" uid="uid://cadyhu4jrdhr0" path="res://objects/wall/horizontal_wall.tscn" id="6_5i0tg"]
 
 [sub_resource type="Environment" id="Environment_lfrn8"]
 background_mode = 3
 tonemap_mode = 3
 glow_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_5i0tg"]
+script/source = "extends Camera2D
+"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_sul5r")
@@ -20,7 +25,7 @@ script = ExtResource("1_sul5r")
 
 [node name="Row1" type="Node2D" parent="Environment/Bunkers"]
 
-[node name="Bunker" parent="Environment/Bunkers/Row1" instance=ExtResource("4_kelw5")]
+[node name="Bunker1" parent="Environment/Bunkers/Row1" instance=ExtResource("4_kelw5")]
 position = Vector2(115, 570)
 
 [node name="Bunker2" parent="Environment/Bunkers/Row1" instance=ExtResource("4_kelw5")]
@@ -40,6 +45,13 @@ position = Vector2(0, 360)
 [node name="VerticalWall2" parent="Environment/Walls" instance=ExtResource("4_bdhmt")]
 position = Vector2(1280, 360)
 
+[node name="HorizontalWall1" parent="Environment/Walls" instance=ExtResource("6_5i0tg")]
+position = Vector2(640, 0)
+collision_mask = 0
+
+[node name="HorizontalWall2" parent="Environment/Walls" instance=ExtResource("6_5i0tg")]
+position = Vector2(640, 720)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_lfrn8")
 
@@ -47,6 +59,7 @@ environment = SubResource("Environment_lfrn8")
 
 [node name="Player" parent="Entities" instance=ExtResource("2_7h61r")]
 position = Vector2(640, 670)
+collision_mask = 33
 
 [node name="Aliens" type="Node2D" parent="Entities"]
 
@@ -163,3 +176,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Score: 0"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+script = SubResource("GDScript_5i0tg")
