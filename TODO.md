@@ -4,7 +4,6 @@
 - Test collider/texture when being hit
 
 ## Aliens
-- Create a few different types of alien invaders.
 - Enemies will move together in a grid. They cross the screen horizontally before dropping vertically and reversing their direction.
 - Add bombs/bullets that the enemies drop. 
 - The invader bullets will destroy the player.

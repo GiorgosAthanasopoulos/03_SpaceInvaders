@@ -41,6 +41,8 @@ func handle_collisions(collision: KinematicCollision2D) -> void:
 func get_movement_vector(_delta: float) -> Vector2:
 	var movement_vector: Vector2 = Vector2.ZERO
 
+	# ai movement
+
 	return movement_vector
 
 

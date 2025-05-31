@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu3api7ltbqoi"]
+[gd_scene load_steps=8 format=3 uid="uid://cu3api7ltbqoi"]
 
 [ext_resource type="Script" uid="uid://cjgonohp85c6y" path="res://objects/bunker/scripts/bunker.gd" id="1_xwnhk"]
-[ext_resource type="Texture2D" uid="uid://o1p61b7t7yjl" path="res://assets/sprites/bunker/bunker.png" id="2_mcmx2"]
+[ext_resource type="Texture2D" uid="uid://b0dm10q1uio2t" path="res://assets/sprites/bunker/bunker.png" id="2_mcmx2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcmx2"]
 atlas = ExtResource("2_mcmx2")
@@ -33,13 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcmx2"]
-size = Vector2(121, 47)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1g18p"]
-size = Vector2(106, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwsxo"]
-size = Vector2(60, 23)
+size = Vector2(121, 120)
 
 [node name="Bunker" type="RigidBody2D"]
 collision_layer = 2
@@ -53,17 +47,5 @@ scale = Vector2(7.5, 7.5)
 sprite_frames = SubResource("SpriteFrames_tp5uw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -15.5)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_mcmx2")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -11)
-shape = SubResource("RectangleShape2D_1g18p")
-disabled = true
-
-[node name="CollisionShape2D1" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -11.5)
-shape = SubResource("RectangleShape2D_fwsxo")
-disabled = true
