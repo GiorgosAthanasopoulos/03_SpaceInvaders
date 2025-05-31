@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d24db2178a8x2"]
+[gd_scene load_steps=3 format=3 uid="uid://d24db2178a8x2"]
 
 [ext_resource type="PackedScene" uid="uid://bqwxjcejmaplw" path="res://projectiles/projectile/projectile.tscn" id="1_3qnch"]
 [ext_resource type="Texture2D" uid="uid://b28axott5n65g" path="res://assets/sprites/player/rocket/rocket.png" id="2_158ay"]
-[ext_resource type="PackedScene" uid="uid://ck22ued57dqfq" path="res://particles/explosion/explosion_particles.tscn" id="3_158ay"]
 
 [node name="Rocket" type="Node2D"]
 
@@ -12,4 +11,3 @@ collision_mask = 43
 gravity_scale = -1.0
 texture = ExtResource("2_158ay")
 my_scale = Vector2(4, 4)
-explosion_particles = ExtResource("3_158ay")

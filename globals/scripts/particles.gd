@@ -12,6 +12,6 @@ func spawn_explosives(global_position: Vector2, global_rotation: float) -> void:
     particles.global_position = global_position
     particles.global_rotation = global_rotation
     particles.emitting = true
-    particles.name = "Explosive Particles " + str(explosives_counter)
+    particles.name = &'Explosive Particles ' + str(explosives_counter)
     explosives_counter += 1
     get_tree().current_scene.add_child(particles)

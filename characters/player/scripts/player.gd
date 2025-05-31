@@ -43,8 +43,7 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 		return
 
 	# hit by an enemy_bullet
-	if not collider.name.contains(&'Wall'):
-		Events.player_hit.emit()
+	Events.player_hit.emit()
 
 
 func handle_player_shooting(delta: float) -> void:
@@ -58,7 +57,7 @@ func handle_player_shooting(delta: float) -> void:
 
 func shoot() -> void:
 	var instance: Node = rocket.instantiate()
-	instance.name = "Rocket" + str(rocket_counter)
+	instance.name = &'Rocket' + str(rocket_counter)
 	rocket_counter += 1
 	@warning_ignore(&'unsafe_property_access')
 	instance.global_position = position

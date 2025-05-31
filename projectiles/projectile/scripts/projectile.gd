@@ -3,7 +3,7 @@ extends RigidBody2D
 
 @export var texture: Texture2D
 @export var my_scale: Vector2 = Vector2(1, 1)
-@export var explosion_particles: PackedScene
+@export var explosion_particles: PackedScene = preload('res://particles/explosion/explosion_particles.tscn')
 
 
 @onready var sprite: Sprite2D = $Sprite2D

@@ -4,14 +4,20 @@ extends CharacterBody2D
 @export var alien_death_score: int = 10
 @export var mothership_death_score: int = 30
 @export var texture: Texture2D
-@export var shoot_delay_ms: float = 1000
+@export var shoot_delay: float = 2
 @export var shoot_probability: float = 0.3
+@export var shoot_bomb_probability: float = 0.3
+
+@export var bomb: PackedScene = preload('res://projectiles/bomb/bomb.tscn')
+@export var bullet: PackedScene = preload('res://projectiles/bullet/bullet.tscn')
 
 
 @onready var sprite: Sprite2D = $Sprite2D
 
 
 var shoot_timer: float = 0
+var bomb_counter: int = 1
+var bullet_counter: int = 1
 
 
 func _ready() -> void:
@@ -41,7 +47,7 @@ func handle_collisions(collision: KinematicCollision2D) -> void:
 func get_movement_vector(_delta: float) -> Vector2:
 	var movement_vector: Vector2 = Vector2.ZERO
 
-	# ai movement
+	# implement ai movement
 
 	return movement_vector
 
@@ -50,7 +56,7 @@ func handle_alien_shooting(delta: float) -> void:
 	shoot_timer -= delta
 
 	if shoot_timer <= 0:
-		shoot_timer = shoot_delay_ms
+		shoot_timer = shoot_delay
 
 		randomize()
 		if randf() < shoot_probability:
@@ -58,5 +64,25 @@ func handle_alien_shooting(delta: float) -> void:
 
 
 func shoot() -> void:
-	# remember to have a change of shooting down a bomb
-	pass
+	if randf() < shoot_bomb_probability:
+		shoot_bomb()
+	else:
+		shoot_bullet()
+
+
+func shoot_bomb() -> void:
+	var instance: Node = bomb.instantiate()
+	instance.name = &'Bomb ' + str(bomb_counter)
+	bomb_counter += 1
+	@warning_ignore(&'unsafe_property_access')
+	instance.global_position = global_position
+	get_tree().current_scene.add_child(instance)
+
+
+func shoot_bullet() -> void:
+	var instance: Node = bullet.instantiate()
+	instance.name = &'Bullet ' + str(bullet_counter)
+	bullet_counter += 1
+	@warning_ignore(&'unsafe_property_access')
+	instance.global_position = global_position
+	get_tree().current_scene.add_child(instance)
