@@ -52,6 +52,7 @@ func handle_player_shooting(delta: float) -> void:
 
 	if Input.is_action_just_pressed(&'shoot') and shoot_timer <= 0:
 		shoot_timer = shoot_delay
+		Audio.play_shoot_sound()
 		shoot()
 
 
@@ -59,9 +60,9 @@ func shoot() -> void:
 	var instance: Node = rocket.instantiate()
 	instance.name = "Rocket" + str(rocket_counter)
 	rocket_counter += 1
-	get_tree().current_scene.add_child(instance)
 	@warning_ignore(&'unsafe_property_access')
 	instance.global_position = position
+	get_tree().current_scene.add_child(instance)
 
 
 func _on_player_died() -> void:

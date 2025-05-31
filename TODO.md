@@ -1,7 +1,4 @@
 # TODOs
-## Player
-- Sound for shooting
-
 ## Bunker
 - Sound for when getting hit/destroyed
 - Test collider/texture when being hit

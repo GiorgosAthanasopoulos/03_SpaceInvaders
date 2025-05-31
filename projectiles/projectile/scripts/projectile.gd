@@ -3,7 +3,6 @@ extends RigidBody2D
 
 @export var texture: Texture2D
 @export var my_scale: Vector2 = Vector2(1, 1)
-@export var my_rotation: float = 0
 @export var explosion_particles: PackedScene
 
 
@@ -18,7 +17,6 @@ func _ready() -> void:
 	sprite.texture = texture
 	sprite.scale = my_scale
 	collision_shape.scale = my_scale
-	rotation = deg_to_rad(my_rotation)
 
 
 func _physics_process(_delta: float) -> void:

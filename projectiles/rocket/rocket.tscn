@@ -11,5 +11,5 @@ collision_layer = 16
 collision_mask = 43
 gravity_scale = -1.0
 texture = ExtResource("2_158ay")
-my_scale = Vector2(3, 3)
+my_scale = Vector2(4, 4)
 explosion_particles = ExtResource("3_158ay")

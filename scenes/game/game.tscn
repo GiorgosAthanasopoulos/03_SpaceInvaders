@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brak20jxcglrn"]
+[gd_scene load_steps=10 format=3 uid="uid://brak20jxcglrn"]
 
 [ext_resource type="Script" uid="uid://ccycgwlbc6hkp" path="res://scenes/game/scripts/game.gd" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://cpcmvv05xmga3" path="res://characters/player/player.tscn" id="2_7h61r"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5ggqae6ps1fq" path="res://objects/wall/vertical_wall.tscn" id="4_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://cu3api7ltbqoi" path="res://objects/bunker/bunker.tscn" id="4_kelw5"]
 [ext_resource type="PackedScene" uid="uid://cadyhu4jrdhr0" path="res://objects/wall/horizontal_wall.tscn" id="6_5i0tg"]
+[ext_resource type="Texture2D" uid="uid://c4okvk028ovt6" path="res://assets/sprites/alien/alien2.png" id="7_bdhmt"]
 
 [sub_resource type="Environment" id="Environment_lfrn8"]
 background_mode = 3
@@ -93,27 +94,35 @@ position = Vector2(1165, 75)
 
 [node name="Alien1" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
 position = Vector2(115, 195)
+texture = ExtResource("7_bdhmt")
 
 [node name="Alien2" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
 position = Vector2(265, 195)
+texture = ExtResource("7_bdhmt")
 
 [node name="Alien3" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
 position = Vector2(415, 195)
+texture = ExtResource("7_bdhmt")
 
 [node name="Alien4" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
 position = Vector2(565, 195)
+texture = ExtResource("7_bdhmt")
 
 [node name="Alien5" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
 position = Vector2(715, 195)
+texture = ExtResource("7_bdhmt")
 
 [node name="Alien6" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
 position = Vector2(865, 195)
+texture = ExtResource("7_bdhmt")
 
 [node name="Alien7" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
 position = Vector2(1015, 195)
+texture = ExtResource("7_bdhmt")
 
 [node name="Alien8" parent="Entities/Aliens/Row2" instance=ExtResource("3_0sr1o")]
 position = Vector2(1165, 195)
+texture = ExtResource("7_bdhmt")
 
 [node name="Row3" type="Node2D" parent="Entities/Aliens"]
 
