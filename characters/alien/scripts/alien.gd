@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var alien_death_score: int = 10
 @export var mothership_death_score: int = 30
 @export var texture: Texture2D
+
 @export var shoot_delay: float = 2
 @export var shoot_probability: float = 0.3
 @export var shoot_bomb_probability: float = 0.3
@@ -11,8 +12,12 @@ extends CharacterBody2D
 @export var bomb: PackedScene = preload('res://projectiles/bomb/bomb.tscn')
 @export var bullet: PackedScene = preload('res://projectiles/bullet/bullet.tscn')
 
+@export var speed: Vector2 = Vector2(100, 10)
+@export var aliens_move_right: bool = true
+
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
 var shoot_timer: float = 0
@@ -22,11 +27,17 @@ var bullet_counter: int = 1
 
 func _ready() -> void:
 	sprite.texture = texture
+	var error: Error = Events.alien_switch_dir.connect(_on_aliens_switch_dir) as Error
+	if error != OK:
+		print("failed to connect alien switch dirs: ", error_string(error))
 
 
 func _physics_process(delta: float) -> void:
+	if State.paused:
+		return
+
 	var movement_vector: Vector2 = get_movement_vector(delta)
-	var collision: KinematicCollision2D = move_and_collide(movement_vector)
+	var collision: KinematicCollision2D = move_and_collide(movement_vector * delta)
 	handle_collisions(collision)
 	handle_alien_shooting(delta)
 
@@ -40,15 +51,18 @@ func handle_collisions(collision: KinematicCollision2D) -> void:
 		return
 
 	# collision mask is only set for friendly bullets so we know we ve been hit we need to die
-	Events.alien_died.emit(mothership_death_score if false else alien_death_score)
-	Audio.play_destroy_sound()
-	queue_free()
+	if not collider.name.contains('Wall'):
+		Events.alien_died.emit(mothership_death_score if false else alien_death_score)
+		Audio.play_destroy_sound()
+		queue_free()
+	else:
+		Events.alien_switch_dir.emit()
 
 
 func get_movement_vector(_delta: float) -> Vector2:
 	var movement_vector: Vector2 = Vector2.ZERO
 
-	# implement ai movement
+	movement_vector.x = (1 if aliens_move_right else -1) * speed.x
 
 	return movement_vector
 
@@ -87,3 +101,8 @@ func shoot_bullet() -> void:
 	@warning_ignore(&'unsafe_property_access')
 	instance.global_position = global_position
 	get_tree().current_scene.add_child(instance)
+
+
+func _on_aliens_switch_dir() -> void:
+	global_position.y += speed.y
+	aliens_move_right = not aliens_move_right

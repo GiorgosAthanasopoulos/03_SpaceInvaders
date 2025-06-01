@@ -1,8 +1,8 @@
 extends Node
 
 
-@onready var sfx_audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-@onready var music_audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+@onready var sound_stream_player: AudioStreamPlayer = AudioStreamPlayer.new()
+@onready var music_stream_player: AudioStreamPlayer = AudioStreamPlayer.new()
 
 
 const shoot: AudioStream = preload('res://assets/sounds/shoot/source/166418__quonux__scifi-shoot-or-bass.wav')
@@ -13,48 +13,50 @@ const bgm: AudioStream = preload('res://assets/music/bgm/source/730222__ncone__s
 
 
 func _ready() -> void:
-    get_tree().current_scene.add_child(sfx_audio_stream_player)
-    get_tree().current_scene.add_child(music_audio_stream_player)
+	add_child(sound_stream_player)
+	add_child(music_stream_player)
 
 
 func play_sound(sound: AudioStream) -> void:
-    sfx_audio_stream_player.stream = sound
-    sfx_audio_stream_player.play()
+	sound_stream_player.stream = sound
+	sound_stream_player.play()
 
 
 func play_music(music: AudioStream) -> void:
-    music_audio_stream_player.stop()
-    music_audio_stream_player.stream = music
-    music_audio_stream_player.play()
+	stop_bgm_music()
+	music_stream_player.stream = music
+	music_stream_player.play()
 
 
 func play_shoot_sound() -> void:
-    play_sound(shoot)
+	play_sound(shoot)
 
 
 func play_win_music() -> void:
-    stop_bgm_music()
-    stop_all_sounds()
-    play_music(win)
+	stop_bgm_music()
+	stop_all_sounds()
+	play_music(win)
 
 
 func play_lose_music() -> void:
-    stop_bgm_music()
-    stop_all_sounds()
-    play_music(lose)
+	stop_bgm_music()
+	stop_all_sounds()
+	play_music(lose)
 
 
 func play_destroy_sound() -> void:
-    play_sound(destroy)
+	play_sound(destroy)
 
 
 func play_bgm_music() -> void:
-    play_music(bgm)
+	play_music(bgm)
 
 
 func stop_bgm_music() -> void:
-    music_audio_stream_player.stop()
+	if music_stream_player.playing:
+		music_stream_player.stop()
 
 
 func stop_all_sounds() -> void:
-    sfx_audio_stream_player.stop()
+	if sound_stream_player.playing:
+		sound_stream_player.stop()

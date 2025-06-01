@@ -17,6 +17,9 @@ var aliens_killed: int = 0
 @onready var score_label: Label = $UI/CanvasLayer/ScoreLabel
 @onready var camera: Camera2D = $Camera2D
 
+@onready var popup: CanvasLayer = $WinLostPopup/CanvasLayer
+@onready var label: Label = $WinLostPopup/CanvasLayer/StateLabel
+
 
 func _ready() -> void:
 	var _signal_connection_id: int = Events.player_hit.connect(decrease_life)
@@ -25,6 +28,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if State.paused:
+		return
+
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 		randomize()
@@ -38,6 +44,10 @@ func decrease_life() -> void:
 
 	if lives <= 0:
 		# lose
+		State.paused = true
+		popup.visible = true
+		label.text = 'You lost!'
+
 		Audio.play_lose_music()
 		Events.player_died.emit()
 
@@ -50,9 +60,21 @@ func increase_score(scoreInc: int) -> void:
 
 	if aliens_killed >= max_aliens:
 		# win
+		State.paused = true
+		popup.visible = true
+		label.text = 'You won!'
+
 		Audio.play_win_music()
-		pass
 
 
 func trigger_shake() -> void:
 	shake_strength = max_shake
+
+
+func _on_restart_button_pressed() -> void:
+	State.paused = false
+	popup.visible = false
+
+	var error: Error = get_tree().reload_current_scene() as Error
+	if error != OK:
+		print("error occured while trying to restart scene upon restart button pressed: ", error_string(error))

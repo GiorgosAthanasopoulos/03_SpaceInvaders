@@ -19,9 +19,12 @@ func _ready() -> void:
 	collision_shape.scale = my_scale
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if State.paused:
+		return
+
 	var movement_vector: Vector2 = get_movement_vector()
-	var collision: KinematicCollision2D = move_and_collide(movement_vector)
+	var collision: KinematicCollision2D = move_and_collide(movement_vector * delta)
 	handle_collisions(collision)
 
 
@@ -33,11 +36,13 @@ func handle_collisions(collision: KinematicCollision2D) -> void:
 	if not is_instance_valid(collider):
 		return
 
+	# collision mask is only set for aliens/enemy bullets so when we hit them we disappear
 	if not collider.name.contains(&'Bunker') and not collider.name.contains('HorizontalWall'):
 		Audio.play_destroy_sound()
 		Particles.spawn_explosives(global_position, global_rotation)
+	if collider.name.contains('Player'):
+		Events.player_hit.emit()
 
-	# collision mask is only set for aliens/enemy bullets so when we hit them we disappear
 	get_parent().queue_free()
 
 

@@ -26,6 +26,7 @@ buses/default_bus_layout="res://audio/buses/default_bus_layout.tres"
 Events="*res://globals/scripts/events.gd"
 Particles="*res://globals/scripts/particles.gd"
 Audio="*res://globals/scripts/audio.gd"
+State="*res://globals/scripts/state.gd"
 
 [debug]
 

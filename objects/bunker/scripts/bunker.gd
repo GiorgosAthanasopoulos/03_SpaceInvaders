@@ -7,9 +7,12 @@ extends RigidBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if State.paused:
+		return
+
 	var movement_vector: Vector2 = get_movement_vector()
-	var collision: KinematicCollision2D = move_and_collide(movement_vector)
+	var collision: KinematicCollision2D = move_and_collide(movement_vector * delta)
 	handle_collisions(collision)
 
 

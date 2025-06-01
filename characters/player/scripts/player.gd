@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var speed: float = 12.5
+@export var speed: float = 500
 @export var shoot_delay: float = 0.25
 @export var rocket: PackedScene = preload('res://projectiles/rocket/rocket.tscn')
 
@@ -15,9 +15,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if State.paused:
+		return
+
 	var movement_vector: Vector2 = get_movement_vector()
 
-	var collision: KinematicCollision2D = move_and_collide(movement_vector)
+	var collision: KinematicCollision2D = move_and_collide(movement_vector * delta)
 	handle_collision(collision)
 
 	handle_player_shooting(delta)
@@ -43,8 +46,8 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 		return
 
 	# hit by an enemy_bullet
-	Events.player_hit.emit()
-	Audio.play_destroy_sound()
+	if not collider.name.contains('Wall'):
+		Audio.play_destroy_sound()
 
 
 func handle_player_shooting(delta: float) -> void:

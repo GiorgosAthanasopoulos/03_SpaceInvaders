@@ -9,7 +9,7 @@ size = Vector2(16, 16)
 [node name="Alien" type="CharacterBody2D"]
 scale = Vector2(5, 5)
 collision_layer = 8
-collision_mask = 16
+collision_mask = 17
 script = ExtResource("1_y7edr")
 texture = ExtResource("1_4k2u6")
 
