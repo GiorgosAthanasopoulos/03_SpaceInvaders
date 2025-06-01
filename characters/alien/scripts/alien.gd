@@ -41,6 +41,7 @@ func handle_collisions(collision: KinematicCollision2D) -> void:
 
 	# collision mask is only set for friendly bullets so we know we ve been hit we need to die
 	Events.alien_died.emit(mothership_death_score if false else alien_death_score)
+	Audio.play_destroy_sound()
 	queue_free()
 
 

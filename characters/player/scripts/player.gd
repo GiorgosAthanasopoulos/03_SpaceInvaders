@@ -44,6 +44,7 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 
 	# hit by an enemy_bullet
 	Events.player_hit.emit()
+	Audio.play_destroy_sound()
 
 
 func handle_player_shooting(delta: float) -> void:

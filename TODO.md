@@ -1,11 +1,7 @@
 # TODOs
-## Bunker
-- Sound for when getting hit/destroyed
-
 ## Aliens
 - Enemies will move together in a grid. They cross the screen horizontally before dropping vertically and reversing their direction.
 - Add a mothership that will cross the screen periodically. Destroying it will result in bonus points.
-- Sound for when getting destroyed
 
 ## Game
 - BGM

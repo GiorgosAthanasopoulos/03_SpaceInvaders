@@ -29,6 +29,7 @@ func handle_collisions(collision: KinematicCollision2D) -> void:
 
 	lives -= 1
 	animated_sprite.frame += 1
+	Audio.play_destroy_sound()
 
 	if lives <= 0:
 		Particles.spawn_explosives(global_position, global_rotation)

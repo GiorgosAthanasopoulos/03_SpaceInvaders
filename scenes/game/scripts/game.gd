@@ -21,6 +21,7 @@ var aliens_killed: int = 0
 func _ready() -> void:
 	var _signal_connection_id: int = Events.player_hit.connect(decrease_life)
 	_signal_connection_id = Events.alien_died.connect(increase_score)
+	Audio.play_bgm_music()
 
 
 func _process(delta: float) -> void:
@@ -37,6 +38,7 @@ func decrease_life() -> void:
 
 	if lives <= 0:
 		# lose
+		Audio.play_lose_music()
 		Events.player_died.emit()
 
 
@@ -48,6 +50,7 @@ func increase_score(scoreInc: int) -> void:
 
 	if aliens_killed >= max_aliens:
 		# win
+		Audio.play_win_music()
 		pass
 
 

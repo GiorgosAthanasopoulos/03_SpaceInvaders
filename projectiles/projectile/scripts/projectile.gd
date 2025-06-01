@@ -34,9 +34,10 @@ func handle_collisions(collision: KinematicCollision2D) -> void:
 		return
 
 	if not collider.name.contains(&'Bunker') and not collider.name.contains('HorizontalWall'):
+		Audio.play_destroy_sound()
 		Particles.spawn_explosives(global_position, global_rotation)
 
-	# collision mask is only set for aliens so when we hit them we disappear
+	# collision mask is only set for aliens/enemy bullets so when we hit them we disappear
 	get_parent().queue_free()
 
 
